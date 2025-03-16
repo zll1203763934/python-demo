@@ -5,3 +5,6 @@ print("world!")
 
 
 print(2+4j)
+
+
+print("ceshi yongli %s" % "ceshi")
