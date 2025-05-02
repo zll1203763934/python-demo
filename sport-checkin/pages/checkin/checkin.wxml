@@ -64,7 +64,7 @@
           <text class="unit-label">{{selectedSport.unitLabel}}</text>
         </view>
         <view class="score-preview" wx:if="{{amount && !isNaN(parseFloat(amount))}}">
-          预计获得 <text class="highlight">{{selectedSport.scoreRate * parseFloat(amount) | 0}}分</text>
+          预计获得 <text class="highlight">{{expectedScore}}分</text>
           <text class="score-note">(单日有效分数：20-70分)</text>
         </view>
       </view>

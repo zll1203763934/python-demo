@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sportcheckin.mapper.UserMapper">
+
+    <!-- 结果映射 -->
+    <resultMap id="BaseResultMap" type="com.sportcheckin.entity.User">
+        <id column="id" property="id" />
+        <result column="openid" property="openid" />
+        <result column="nick_name" property="nickName" />
+        <result column="avatar_url" property="avatarUrl" />
+        <result column="gender" property="gender" />
+        <result column="status" property="status" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!-- 基础列 -->
+    <sql id="Base_Column_List">
+        id, openid, nick_name, avatar_url, gender, status, create_time, update_time
+    </sql>
+
+    <!-- 添加用户 -->
+    <insert id="insert" parameterType="com.sportcheckin.entity.User" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO user (
+            openid, nick_name, avatar_url, gender, status, create_time, update_time
+        )
+        VALUES (
+            #{openid}, #{nickName}, #{avatarUrl}, #{gender}, #{status}, #{createTime}, #{updateTime}
+        )
+    </insert>
+
+    <!-- 根据ID查询用户 -->
+    <select id="selectById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM user
+        WHERE id = #{id}
+    </select>
+
+    <!-- 根据openid查询用户 -->
+    <select id="selectByOpenid" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM user
+        WHERE openid = #{openid}
+    </select>
+
+    <!-- 更新用户信息 -->
+    <update id="update" parameterType="com.sportcheckin.entity.User">
+        UPDATE user
+        SET
+            nick_name = #{nickName},
+            avatar_url = #{avatarUrl},
+            gender = #{gender},
+            update_time = #{updateTime}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 更新用户状态 -->
+    <update id="updateStatus">
+        UPDATE user
+        SET
+            status = #{status},
+            update_time = NOW()
+        WHERE id = #{id}
+    </update>
+
+    <!-- 删除用户 -->
+    <delete id="deleteById" parameterType="java.lang.Long">
+        DELETE FROM user
+        WHERE id = #{id}
+    </delete>
+
+    <!-- 查询用户列表 -->
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM user
+    </select>
+
+    <!-- 根据状态查询用户列表 -->
+    <select id="selectByStatus" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM user
+        WHERE status = #{status}
+    </select>
+</mapper>

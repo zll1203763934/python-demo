@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sportcheckin.mapper.CheckinRecordMapper">
+
+    <!-- 结果映射 -->
+    <resultMap id="BaseResultMap" type="com.sportcheckin.entity.CheckinRecord">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="sport_type_id" property="sportTypeId" />
+        <result column="amount" property="amount" />
+        <result column="score" property="score" />
+        <result column="checkin_date" property="checkinDate" />
+        <result column="image_url" property="imageUrl" />
+        <result column="remark" property="remark" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!-- 基础列 -->
+    <sql id="Base_Column_List">
+        id, user_id, sport_type_id, amount, score, checkin_date, image_url, remark, create_time, update_time
+    </sql>
+
+    <!-- 添加打卡记录 -->
+    <insert id="insert" parameterType="com.sportcheckin.entity.CheckinRecord" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO checkin_record (
+            user_id, sport_type_id, amount, score, checkin_date, image_url, remark, create_time, update_time
+        )
+        VALUES (
+            #{userId}, #{sportTypeId}, #{amount}, #{score}, #{checkinDate}, #{imageUrl}, #{remark}, #{createTime}, #{updateTime}
+        )
+    </insert>
+
+    <!-- 根据ID查询打卡记录 -->
+    <select id="selectById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM checkin_record
+        WHERE id = #{id}
+    </select>
+
+    <!-- 查询用户打卡记录列表 -->
+    <select id="selectByUserIdAndDateRange" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM checkin_record
+        WHERE user_id = #{userId}
+        <if test="startDate != null">
+            AND checkin_date &gt;= #{startDate}
+        </if>
+        <if test="endDate != null">
+            AND checkin_date &lt;= #{endDate}
+        </if>
+        ORDER BY checkin_date DESC
+    </select>
+
+    <!-- 查询用户当天是否已打卡 -->
+    <select id="countByUserIdAndDate" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM checkin_record
+        WHERE user_id = #{userId}
+        AND checkin_date = #{date}
+    </select>
+
+    <!-- 更新打卡记录 -->
+    <update id="update" parameterType="com.sportcheckin.entity.CheckinRecord">
+        UPDATE checkin_record
+        SET
+            sport_type_id = #{sportTypeId},
+            amount = #{amount},
+            score = #{score},
+            checkin_date = #{checkinDate},
+            image_url = #{imageUrl},
+            remark = #{remark},
+            update_time = #{updateTime}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 删除打卡记录 -->
+    <delete id="deleteById" parameterType="java.lang.Long">
+        DELETE FROM checkin_record
+        WHERE id = #{id}
+    </delete>
+
+    <!-- 统计用户在日期范围内的打卡总积分 -->
+    <select id="sumScoreByUserIdAndDateRange" resultType="java.lang.Integer">
+        SELECT COALESCE(SUM(score), 0)
+        FROM checkin_record
+        WHERE user_id = #{userId}
+        <if test="startDate != null">
+            AND checkin_date &gt;= #{startDate}
+        </if>
+        <if test="endDate != null">
+            AND checkin_date &lt;= #{endDate}
+        </if>
+    </select>
+
+    <!-- 统计用户在日期范围内的打卡天数 -->
+    <select id="countDistinctDateByUserIdAndDateRange" resultType="java.lang.Integer">
+        SELECT COUNT(DISTINCT checkin_date)
+        FROM checkin_record
+        WHERE user_id = #{userId}
+        <if test="startDate != null">
+            AND checkin_date &gt;= #{startDate}
+        </if>
+        <if test="endDate != null">
+            AND checkin_date &lt;= #{endDate}
+        </if>
+    </select>
+</mapper>

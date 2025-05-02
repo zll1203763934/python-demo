@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sportcheckin.mapper.SportTypeMapper">
+
+    <!-- 结果映射 -->
+    <resultMap id="BaseResultMap" type="com.sportcheckin.entity.SportType">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="unit" property="unit" />
+        <result column="score_rate" property="scoreRate" />
+        <result column="unit_label" property="unitLabel" />
+    </resultMap>
+
+    <!-- 基础列 -->
+    <sql id="Base_Column_List">
+        id, name, unit, score_rate, unit_label
+    </sql>
+
+    <!-- 查询所有运动类型 -->
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM sport_type
+    </select>
+
+    <!-- 根据ID查询运动类型 -->
+    <select id="selectById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM sport_type
+        WHERE id = #{id}
+    </select>
+
+    <!-- 添加运动类型 -->
+    <insert id="insert" parameterType="com.sportcheckin.entity.SportType" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO sport_type (
+            name, unit, score_rate, unit_label
+        )
+        VALUES (
+            #{name}, #{unit}, #{scoreRate}, #{unitLabel}
+        )
+    </insert>
+
+    <!-- 更新运动类型 -->
+    <update id="update" parameterType="com.sportcheckin.entity.SportType">
+        UPDATE sport_type
+        SET
+            name = #{name},
+            unit = #{unit},
+            score_rate = #{scoreRate},
+            unit_label = #{unitLabel}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 删除运动类型 -->
+    <delete id="deleteById" parameterType="java.lang.Long">
+        DELETE FROM sport_type
+        WHERE id = #{id}
+    </delete>
+</mapper>
