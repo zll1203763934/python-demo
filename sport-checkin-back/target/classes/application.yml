@@ -1,0 +1,29 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/sport_checkin?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.sportcheckin.entity
+  configuration:
+    map-underscore-to-camel-case: true
+
+# 微信小程序配置
+wx:
+  miniapp:
+    appid: wx5d19814491205432  # 从小程序配置中获取的appid
+    secret: ${WX_MINIAPP_SECRET:请在环境变量中设置}
+    token: ${WX_MINIAPP_TOKEN:请在环境变量中设置}
+    aesKey: ${WX_MINIAPP_AESKEY:请在环境变量中设置}
+    msgDataFormat: JSON
