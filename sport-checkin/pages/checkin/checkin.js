@@ -36,7 +36,6 @@ Page({
     const app = getApp();
     const today = new Date().toISOString().split('T')[0];
     const todayCheckin = app.globalData.checkinRecords.find(r => r.date === today);
-    
     if (todayCheckin) {
       // 如果今日已打卡，显示打卡记录
       this.setData({
@@ -65,8 +64,17 @@ Page({
   
   // 输入运动量
   inputAmount: function(e) {
+    const amount = e.detail.value;
+    let expectedScore = 0;
+    
+    if (amount && !isNaN(parseFloat(amount)) && this.data.selectedSport) {
+      // 计算预计获得的分数
+      expectedScore = Math.floor(this.data.selectedSport.scoreRate * parseFloat(amount));
+    }
+    
     this.setData({
-      amount: e.detail.value
+      amount: amount,
+      expectedScore: expectedScore
     });
   },
   

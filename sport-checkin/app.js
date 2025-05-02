@@ -9,12 +9,9 @@ App({
     sportTypes: [
       { id: 1, name: '跑步', unit: '公里', scoreRate: 15, unitLabel: '公里' },
       { id: 2, name: '跳绳', unit: '分钟', scoreRate: 2, unitLabel: '分钟' },
-      { id: 3, name: 'keep运动', unit: '分钟', scoreRate: 2, unitLabel: '分钟' },
-      { id: 4, name: '羽毛球', unit: '小时', scoreRate: 70, unitLabel: '小时' },
-      { id: 5, name: '游泳', unit: '千米', scoreRate: 70, unitLabel: '千米' },
-      { id: 6, name: '徒步', unit: '步数', scoreRate: 0.0025, unitLabel: '步' },
-      { id: 7, name: '轻量运动', unit: '分钟', scoreRate: 1, unitLabel: '分钟' },
-      { id: 8, name: '重量运动', unit: '分钟', scoreRate: 1.5, unitLabel: '分钟' }
+      { id: 3, name: '羽毛球', unit: '小时', scoreRate: 70, unitLabel: '小时' },
+      { id: 4, name: '游泳', unit: '千米', scoreRate: 70, unitLabel: '千米' },
+      { id: 5, name: '徒步', unit: '公里', scoreRate: 0.0025, unitLabel: '步' }
     ],
     checkinRecords: [],
     specialRequests: [] // 特殊情况申请记录
