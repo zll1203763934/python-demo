@@ -1,0 +1,222 @@
+.container {
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+/* 用户信息区域 */
+.user-info-section {
+  display: flex;
+  justify-content: center;
+  padding: 30rpx 0;
+  margin-bottom: 30rpx;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 50%;
+  margin-bottom: 20rpx;
+}
+
+.user-name {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.login-btn {
+  background-color: #3cc51f;
+  color: white;
+  font-size: 30rpx;
+  padding: 10rpx 30rpx;
+  border-radius: 30rpx;
+}
+
+/* 进度区域 */
+.progress-section {
+  background-color: #fff;
+  border-radius: 12rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.progress-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+
+.progress-info {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 20rpx;
+}
+
+.progress-score {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #3cc51f;
+}
+
+.progress-target {
+  font-size: 28rpx;
+  color: #888;
+  margin-left: 10rpx;
+}
+
+.progress-bar {
+  margin-bottom: 20rpx;
+}
+
+.progress-tips {
+  font-size: 28rpx;
+  color: #888;
+}
+
+.highlight {
+  color: #ff6b6b;
+  font-weight: bold;
+}
+
+.success {
+  color: #3cc51f;
+}
+
+/* 今日打卡区域 */
+.today-section {
+  background-color: #fff;
+  border-radius: 12rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+  border-left: 8rpx solid #3cc51f;
+  padding-left: 20rpx;
+}
+
+.today-checkin {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.checkin-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkin-type {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.checkin-amount {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 10rpx;
+}
+
+.checkin-score {
+  font-size: 30rpx;
+  color: #3cc51f;
+  font-weight: bold;
+}
+
+.checkin-image {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 8rpx;
+}
+
+.no-checkin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40rpx 0;
+  color: #999;
+}
+
+.checkin-btn {
+  margin-top: 20rpx;
+  background-color: #3cc51f;
+  color: white;
+  font-size: 28rpx;
+  padding: 10rpx 40rpx;
+  border-radius: 30rpx;
+}
+
+/* 最近打卡记录 */
+.recent-section {
+  background-color: #fff;
+  border-radius: 12rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.no-record {
+  text-align: center;
+  color: #999;
+  padding: 30rpx 0;
+}
+
+.record-item {
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #eee;
+}
+
+.record-date {
+  font-size: 26rpx;
+  color: #888;
+  margin-bottom: 10rpx;
+}
+
+.record-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.record-type {
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.record-amount {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.record-score {
+  font-size: 30rpx;
+  color: #3cc51f;
+  font-weight: bold;
+}
+
+/* 底部按钮区域 */
+.bottom-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 40rpx;
+}
+
+.action-btn {
+  background-color: #3cc51f;
+  color: white;
+  font-size: 30rpx;
+  padding: 15rpx 60rpx;
+  border-radius: 40rpx;
+  margin: 0 20rpx;
+}

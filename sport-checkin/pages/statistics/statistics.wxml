@@ -1,0 +1,80 @@
+<!-- statistics.wxml -->
+<view class="container">
+  <!-- 周统计头部 -->
+  <view class="week-header">
+    <view class="week-title">本周统计</view>
+    <view class="week-date">{{currentWeek}}</view>
+  </view>
+  
+  <!-- 进度统计 -->
+  <view class="progress-section">
+    <view class="progress-info">
+      <text class="progress-score">{{weeklyScore}}</text>
+      <text class="progress-target">/ {{weeklyTarget}}分</text>
+    </view>
+    <progress class="progress-bar" percent="{{weekProgress}}" stroke-width="12" activeColor="#3cc51f" backgroundColor="#e6e6e6" />
+    
+    <!-- 红包提示 -->
+    <view class="penalty-section" wx:if="{{penalty.needPenalty}}">
+      <view class="penalty-text">
+        本周运动未达标，需发红包 <text class="penalty-amount">{{penalty.amount}}元</text>
+      </view>
+      <button class="penalty-btn" bindtap="generateRedPacket">生成红包</button>
+    </view>
+    <view class="success-text" wx:else>
+      <text wx:if="{{weeklyScore >= weeklyTarget}}">恭喜！本周已达标</text>
+      <text wx:else>继续加油！距离目标还差 {{weeklyTarget - weeklyScore}} 分</text>
+    </view>
+  </view>
+  
+  <!-- 本周打卡记录 -->
+  <view class="records-section">
+    <view class="section-title">本周打卡记录</view>
+    <view class="no-record" wx:if="{{weeklyRecords.length === 0}}">
+      本周暂无打卡记录
+    </view>
+    <view class="record-list" wx:else>
+      <view class="record-item" wx:for="{{weeklyRecords}}" wx:key="date">
+        <view class="record-date">{{item.displayDate}}</view>
+        <view class="record-content">
+          <view class="record-info">
+            <text class="record-type">{{item.sportName}}</text>
+            <text class="record-amount">{{item.amount}}{{item.unitLabel}}</text>
+          </view>
+          <text class="record-score">+{{item.score}}分</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 特殊申请记录 -->
+  <view class="special-section" wx:if="{{specialRequests.length > 0}}">
+    <view class="section-title">特殊申请记录</view>
+    <view class="special-list">
+      <view 
+        class="special-item" 
+        wx:for="{{specialRequests}}" 
+        wx:key="date"
+        bindtap="viewSpecialRequest"
+        data-index="{{index}}"
+      >
+        <view class="special-date">{{item.date}}</view>
+        <view class="special-reason">{{item.reason}}</view>
+        <view class="special-status {{item.status}}">
+          {{item.status === 'pending' ? '待审核' : (item.status === 'approved' ? '已通过' : '已拒绝')}}
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 规则说明 -->
+  <view class="rules-section">
+    <view class="section-title">规则说明</view>
+    <view class="rules-content">
+      <view class="rule-item">1. 每周需至少获得180运动分，不足180分按差额发红包（1分=1元钱）</view>
+      <view class="rule-item">2. 单日不足20分记为0分，单日上限70分</view>
+      <view class="rule-item">3. 漏打卡第二天可补打卡，不扣分，但需发红包10元</view>
+      <view class="rule-item">4. 女生生理期或特殊原因（如生病等）可申请免处罚</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,147 @@
+<!-- checkin.wxml -->
+<view class="container">
+  <view class="date-display">{{todayDate}}</view>
+  
+  <!-- 已打卡显示 -->
+  <block wx:if="{{todayCheckin}}">
+    <view class="checkin-done">
+      <view class="done-icon">
+        <icon type="success" size="60"></icon>
+      </view>
+      <view class="done-text">今日已完成打卡</view>
+      <view class="checkin-detail">
+        <view class="detail-item">
+          <text class="detail-label">运动类型：</text>
+          <text class="detail-value">{{todayCheckin.sportName}}</text>
+        </view>
+        <view class="detail-item">
+          <text class="detail-label">运动量：</text>
+          <text class="detail-value">{{todayCheckin.amount}}{{todayCheckin.unitLabel}}</text>
+        </view>
+        <view class="detail-item">
+          <text class="detail-label">获得分数：</text>
+          <text class="detail-value highlight">{{todayCheckin.score}}分</text>
+        </view>
+        <view class="detail-item" wx:if="{{todayCheckin.remark}}">
+          <text class="detail-label">备注：</text>
+          <text class="detail-value">{{todayCheckin.remark}}</text>
+        </view>
+      </view>
+      <image wx:if="{{todayCheckin.image}}" class="checkin-image" src="{{todayCheckin.image}}" mode="aspectFill" bindtap="previewImage"></image>
+    </view>
+  </block>
+  
+  <!-- 打卡表单 -->
+  <block wx:else>
+    <view class="checkin-form">
+      <!-- 运动类型选择 -->
+      <view class="form-section">
+        <view class="section-title">选择运动类型</view>
+        <view class="sport-types">
+          <view 
+            wx:for="{{sportTypes}}" 
+            wx:key="id" 
+            class="sport-item {{selectedSport.id === item.id ? 'selected' : ''}}" 
+            bindtap="selectSport" 
+            data-id="{{item.id}}"
+          >
+            <text>{{item.name}}</text>
+          </view>
+        </view>
+      </view>
+      
+      <!-- 运动量输入 -->
+      <view class="form-section" wx:if="{{selectedSport}}">
+        <view class="section-title">输入运动量</view>
+        <view class="input-group">
+          <input 
+            type="digit" 
+            class="amount-input" 
+            placeholder="请输入数值" 
+            value="{{amount}}" 
+            bindinput="inputAmount"
+          />
+          <text class="unit-label">{{selectedSport.unitLabel}}</text>
+        </view>
+        <view class="score-preview" wx:if="{{amount && !isNaN(parseFloat(amount))}}">
+          预计获得 <text class="highlight">{{selectedSport.scoreRate * parseFloat(amount) | 0}}分</text>
+          <text class="score-note">(单日有效分数：20-70分)</text>
+        </view>
+      </view>
+      
+      <!-- 上传图片 -->
+      <view class="form-section">
+        <view class="section-title">上传运动截图</view>
+        <view class="image-upload">
+          <view class="upload-box" bindtap="chooseImage" wx:if="{{!tempImagePath}}">
+            <text class="upload-icon">+</text>
+            <text class="upload-text">点击上传</text>
+          </view>
+          <view class="image-preview" wx:else>
+            <image src="{{tempImagePath}}" mode="aspectFill" bindtap="previewImage"></image>
+            <view class="delete-btn" catchtap="deleteImage">×</view>
+          </view>
+        </view>
+      </view>
+      
+      <!-- 备注 -->
+      <view class="form-section">
+        <view class="section-title">备注（选填）</view>
+        <textarea 
+          class="remark-input" 
+          placeholder="添加备注信息" 
+          value="{{remark}}" 
+          bindinput="inputRemark"
+        ></textarea>
+      </view>
+      
+      <!-- 提交按钮 -->
+      <button 
+        class="submit-btn" 
+        bindtap="submitCheckin" 
+        disabled="{{isSubmitting}}"
+      >
+        {{isSubmitting ? '提交中...' : '提交打卡'}}
+      </button>
+    </view>
+  </block>
+  
+  <!-- 特殊申请按钮 -->
+  <view class="special-request">
+    <text bindtap="showSpecialRequestForm">申请特殊情况（生理期/生病等）</text>
+  </view>
+  
+  <!-- 特殊申请弹窗 -->
+  <view class="special-modal" wx:if="{{showSpecialRequest}}">
+    <view class="modal-mask" bindtap="hideSpecialRequestForm"></view>
+    <view class="modal-content">
+      <view class="modal-title">特殊情况申请</view>
+      <view class="modal-form">
+        <view class="form-item">
+          <text class="form-label">申请原因：</text>
+          <textarea 
+            class="special-reason" 
+            placeholder="请输入申请原因（如生理期、生病等）" 
+            value="{{specialReason}}" 
+            bindinput="inputSpecialReason"
+          ></textarea>
+        </view>
+        <view class="form-item">
+          <text class="form-label">天数：</text>
+          <picker 
+            mode="selector" 
+            range="{{[1, 2, 3, 4, 5, 6, 7]}}" 
+            value="{{specialDays - 1}}" 
+            bindchange="setSpecialDays"
+          >
+            <view class="picker-view">{{specialDays}}天</view>
+          </picker>
+        </view>
+      </view>
+      <view class="modal-buttons">
+        <button class="cancel-btn" bindtap="hideSpecialRequestForm">取消</button>
+        <button class="confirm-btn" bindtap="submitSpecialRequest">提交申请</button>
+      </view>
+    </view>
+  </view>
+</view>
