@@ -1,0 +1,68 @@
+<!-- index.wxml -->
+<view class="container">
+  <!-- 用户信息区域 -->
+  <view class="user-info-section">
+    <view class="user-info" wx:if="{{hasUserInfo}}">
+      <image class="user-avatar" src="{{userInfo.avatarUrl}}"></image>
+      <text class="user-name">{{userInfo.nickName}}</text>
+    </view>
+    <button wx:else class="login-btn" open-type="getUserInfo" bindgetuserinfo="getUserInfo">登录</button>
+  </view>
+
+  <!-- 本周进度区域 -->
+  <view class="progress-section">
+    <view class="progress-title">本周运动进度</view>
+    <view class="progress-info">
+      <text class="progress-score">{{weeklyScore}}</text>
+      <text class="progress-target">/ {{weeklyTarget}}分</text>
+    </view>
+    <progress class="progress-bar" percent="{{weekProgress}}" stroke-width="12" activeColor="#3cc51f" backgroundColor="#e6e6e6" />
+    <view class="progress-tips" wx:if="{{weeklyScore < weeklyTarget}}">
+      距离目标还差 <text class="highlight">{{weeklyTarget - weeklyScore}}</text> 分
+    </view>
+    <view class="progress-tips success" wx:else>
+      恭喜！已达成本周目标
+    </view>
+  </view>
+
+  <!-- 今日打卡区域 -->
+  <view class="today-section">
+    <view class="section-title">今日打卡</view>
+    <view class="today-checkin" wx:if="{{todayCheckin}}">
+      <view class="checkin-info">
+        <text class="checkin-type">{{todayCheckin.sportName}}</text>
+        <text class="checkin-amount">{{todayCheckin.amount}}{{todayCheckin.unitLabel}}</text>
+        <text class="checkin-score">+{{todayCheckin.score}}分</text>
+      </view>
+      <image wx:if="{{todayCheckin.image}}" class="checkin-image" src="{{todayCheckin.image}}" mode="aspectFill"></image>
+    </view>
+    <view class="no-checkin" wx:else bindtap="goToCheckin">
+      <text>今日未打卡</text>
+      <button class="checkin-btn">去打卡</button>
+    </view>
+  </view>
+
+  <!-- 最近打卡记录 -->
+  <view class="recent-section">
+    <view class="section-title">最近打卡记录</view>
+    <view class="recent-list">
+      <view class="no-record" wx:if="{{recentRecords.length === 0}}">
+        暂无打卡记录
+      </view>
+      <view class="record-item" wx:for="{{recentRecords}}" wx:key="date">
+        <view class="record-date">{{item.date}}</view>
+        <view class="record-info">
+          <text class="record-type">{{item.sportName}}</text>
+          <text class="record-amount">{{item.amount}}{{item.unitLabel}}</text>
+          <text class="record-score">+{{item.score}}分</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部按钮区域 -->
+  <view class="bottom-buttons">
+    <button class="action-btn" bindtap="goToCheckin">打卡</button>
+    <button class="action-btn" bindtap="goToStatistics">查看统计</button>
+  </view>
+</view>

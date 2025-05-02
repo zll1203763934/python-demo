@@ -1,0 +1,69 @@
+<!-- profile.wxml -->
+<view class="container">
+  <!-- 用户信息区域 -->
+  <view class="user-info-section">
+    <view class="user-info" wx:if="{{hasUserInfo}}">
+      <image class="user-avatar" src="{{userInfo.avatarUrl}}"></image>
+      <text class="user-name">{{userInfo.nickName}}</text>
+    </view>
+    <button wx:else class="login-btn" open-type="getUserInfo" bindgetuserinfo="getUserInfo">登录</button>
+  </view>
+  
+  <!-- 统计信息 -->
+  <view class="stats-section">
+    <view class="stats-item">
+      <text class="stats-value">{{totalScore}}</text>
+      <text class="stats-label">总积分</text>
+    </view>
+    <view class="stats-divider"></view>
+    <view class="stats-item">
+      <text class="stats-value">{{totalCheckins}}</text>
+      <text class="stats-label">打卡次数</text>
+    </view>
+    <view class="stats-divider"></view>
+    <view class="stats-item">
+      <text class="stats-value">{{specialRequests.length}}</text>
+      <text class="stats-label">特殊申请</text>
+    </view>
+  </view>
+  
+  <!-- 设置菜单 -->
+  <view class="menu-section">
+    <view class="menu-title">设置</view>
+    <view class="menu-list">
+      <view class="menu-item" bindtap="showAboutInfo">
+        <text class="menu-label">关于小程序</text>
+        <text class="menu-arrow">></text>
+      </view>
+      <view class="menu-item" bindtap="contactUs">
+        <text class="menu-label">联系我们</text>
+        <text class="menu-arrow">></text>
+      </view>
+      <view class="menu-item" bindtap="clearData">
+        <text class="menu-label">清除数据</text>
+        <text class="menu-arrow">></text>
+      </view>
+      <view class="menu-item" bindtap="logout" wx:if="{{hasUserInfo}}">
+        <text class="menu-label logout">退出登录</text>
+        <text class="menu-arrow">></text>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 关于弹窗 -->
+  <view class="about-modal" wx:if="{{showAbout}}">
+    <view class="modal-mask" bindtap="hideAboutInfo"></view>
+    <view class="modal-content">
+      <view class="modal-title">关于小程序</view>
+      <view class="about-content">
+        <view class="app-name">运动打卡小程序</view>
+        <view class="app-version">版本：1.0.0</view>
+        <view class="app-desc">
+          本小程序用于记录每日运动打卡，帮助用户养成良好的运动习惯。
+          每周需至少获得180运动分，不足180分按差额发红包。
+        </view>
+      </view>
+      <button class="close-btn" bindtap="hideAboutInfo">关闭</button>
+    </view>
+  </view>
+</view>
