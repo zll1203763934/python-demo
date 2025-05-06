@@ -12,7 +12,7 @@
       <text class="progress-score">{{weeklyScore}}</text>
       <text class="progress-target">/ {{weeklyTarget}}分</text>
     </view>
-    <progress class="progress-bar" percent="{{weekProgress}}" stroke-width="12" activeColor="#3cc51f" backgroundColor="#e6e6e6" />
+    <progress class="progress-bar" percent="{{weekProgress}}" stroke-width="12" activeColor="#42b983" backgroundColor="#e6e6e6" />
     
     <!-- 红包提示 -->
     <view class="penalty-section" wx:if="{{penalty.needPenalty}}">

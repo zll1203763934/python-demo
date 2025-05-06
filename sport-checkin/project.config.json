@@ -48,7 +48,7 @@
     "disableSWC": true
   },
   "compileType": "miniprogram",
-  "libVersion": "2.19.4",
+  "libVersion": "3.8.3",
   "appid": "wx5d19814491205432",
   "projectname": "运动打卡小程序",
   "isGameTourist": false,

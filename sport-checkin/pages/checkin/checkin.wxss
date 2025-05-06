@@ -30,7 +30,7 @@
 .done-text {
   font-size: 36rpx;
   font-weight: bold;
-  color: #3cc51f;
+  color: #42b983;
   margin-bottom: 30rpx;
 }
 
@@ -56,7 +56,7 @@
 }
 
 .highlight {
-  color: #3cc51f;
+  color: #42b983;
   font-weight: bold;
 }
 
@@ -109,7 +109,7 @@
 }
 
 .sport-item.selected {
-  background-color: #3cc51f;
+  background-color: #42b983;
   color: #fff;
 }
 
@@ -214,7 +214,7 @@
 
 /* 提交按钮 */
 .submit-btn {
-  background-color: #3cc51f;
+  background-color: #42b983;
   color: #fff;
   font-size: 32rpx;
   margin-top: 40rpx;
@@ -224,7 +224,7 @@
 }
 
 .submit-btn[disabled] {
-  background-color: #9de69a;
+  background-color: #a8e2c9;
   color: #fff;
 }
 
@@ -233,7 +233,7 @@
   text-align: center;
   margin-top: 30rpx;
   font-size: 28rpx;
-  color: #3cc51f;
+  color: #42b983;
   text-decoration: underline;
 }
 
@@ -338,6 +338,6 @@
 }
 
 .confirm-btn {
-  background-color: #3cc51f;
+  background-color: #42b983;
   color: #fff;
 }

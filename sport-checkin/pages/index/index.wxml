@@ -16,7 +16,7 @@
       <text class="progress-score">{{weeklyScore}}</text>
       <text class="progress-target">/ {{weeklyTarget}}分</text>
     </view>
-    <progress class="progress-bar" percent="{{weekProgress}}" stroke-width="12" activeColor="#3cc51f" backgroundColor="#e6e6e6" />
+    <progress class="progress-bar" percent="{{weekProgress}}" stroke-width="12" activeColor="#42b983" backgroundColor="#e6e6e6" />
     <view class="progress-tips" wx:if="{{weeklyScore < weeklyTarget}}">
       距离目标还差 <text class="highlight">{{weeklyTarget - weeklyScore}}</text> 分
     </view>

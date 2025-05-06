@@ -7,13 +7,13 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#3cc51f",
+    "navigationBarBackgroundColor": "#42b983",
     "navigationBarTitleText": "运动打卡",
     "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "color": "#7A7E83",
-    "selectedColor": "#3cc51f",
+    "selectedColor": "#42b983",
     "borderStyle": "black",
     "backgroundColor": "#ffffff",
     "list": [

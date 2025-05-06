@@ -1,7 +1,7 @@
 /**app.wxss**/
 /* 全局样式 */
 page {
-  background-color: #f6f6f6;
+  background-color: #f8f9fa;
   font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;
   color: #333;
   font-size: 28rpx;
@@ -25,7 +25,7 @@ button {
   padding: 0;
   background: none;
   border: none;
-  text-align: left;
+  text-align: center;
   line-height: normal;
   border-radius: 0;
   box-sizing: border-box;
@@ -61,7 +61,7 @@ button::after {
 
 /* 通用文本样式 */
 .text-primary {
-  color: #3cc51f;
+  color: #42b983;
 }
 
 .text-secondary {

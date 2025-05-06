@@ -33,7 +33,7 @@
 }
 
 .login-btn {
-  background-color: #3cc51f;
+  background-color: #42b983;
   color: white;
   font-size: 30rpx;
   padding: 10rpx 30rpx;
@@ -61,7 +61,7 @@
 .stats-value {
   font-size: 40rpx;
   font-weight: bold;
-  color: #3cc51f;
+  color: #42b983;
   margin-bottom: 10rpx;
 }
 
@@ -88,7 +88,7 @@
   font-size: 32rpx;
   font-weight: bold;
   margin-bottom: 20rpx;
-  border-left: 8rpx solid #3cc51f;
+  border-left: 8rpx solid #42b983;
   padding-left: 20rpx;
 }
 
@@ -181,7 +181,7 @@
 }
 
 .close-btn {
-  background-color: #3cc51f;
+  background-color: #42b983;
   color: #fff;
   font-size: 30rpx;
   border-radius: 40rpx;

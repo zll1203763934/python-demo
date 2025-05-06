@@ -30,11 +30,13 @@
 }
 
 .login-btn {
-  background-color: #3cc51f;
+  background-color: #42b983;
   color: white;
   font-size: 30rpx;
   padding: 10rpx 30rpx;
   border-radius: 30rpx;
+  display: flex;
+  justify-content: center;
 }
 
 /* 进度区域 */
@@ -61,7 +63,7 @@
 .progress-score {
   font-size: 48rpx;
   font-weight: bold;
-  color: #3cc51f;
+  color: #42b983;
 }
 
 .progress-target {
@@ -85,7 +87,7 @@
 }
 
 .success {
-  color: #3cc51f;
+  color: #42b983;
 }
 
 /* 今日打卡区域 */
@@ -101,7 +103,7 @@
   font-size: 32rpx;
   font-weight: bold;
   margin-bottom: 20rpx;
-  border-left: 8rpx solid #3cc51f;
+  border-left: 8rpx solid #42b983;
   padding-left: 20rpx;
 }
 
@@ -130,7 +132,7 @@
 
 .checkin-score {
   font-size: 30rpx;
-  color: #3cc51f;
+  color: #42b983;
   font-weight: bold;
 }
 
@@ -150,7 +152,7 @@
 
 .checkin-btn {
   margin-top: 20rpx;
-  background-color: #3cc51f;
+  background-color: #42b983;
   color: white;
   font-size: 28rpx;
   padding: 10rpx 40rpx;
@@ -213,7 +215,7 @@
 }
 
 .action-btn {
-  background-color: #3cc51f;
+  background-color: #42b983;
   color: white;
   font-size: 30rpx;
   padding: 15rpx 60rpx;
